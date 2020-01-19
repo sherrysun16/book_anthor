@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>Document</title>
+</head>
+
+<body>
+<h1>Add an anthor</h1>
+  <form action='/new' method='post'>
+        {% csrf_token %}
+
+    First name: <input type='text' name='fname'> <br>
+    Last name: <input type='text' name='lname'> <br>
+    Notes: <br>
+    <textarea rows="4" cols="50" name="note" >
+Enter text here...</textarea> <br>
+
+    <button type='submit'>add<button> <br>
+        <table style="width:100%">
+          <tr>
+            <th>ID</th>
+            <th>title</th>
+            <th>action</th>
+          </tr>
+          {% for u in pub %}
+          <tr>
+            <th> {{u.id}}</th>
+            <th> {{u.name}}</th>
+            <th> <a href="http://localhost:8000/authors/{{u.id}}">view</a></th>
+          </tr>
+          {% endfor  %}
+        </table>
+
+  </form>
+</body>
+
+</html>
